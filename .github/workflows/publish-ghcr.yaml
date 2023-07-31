@@ -1,14 +1,24 @@
-name: Docker Image CI for GHCR 
-on: 
-  push
+name: 050-docker-build-workflow
 
-jobs: 
-  build_and_publish: 
+on:
+  push:
+    branches: none # [ main ]
+  pull_request:
+    branches: none # [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+
+  build-container:
+
     runs-on: ubuntu-latest
-    steps: 
-      - uses: actions/checkout@v3
-      - name: Build and push the image
-        run: 
-           docker login --username oftharsh --password ${{ secrets.GH_PAT }} ghcr.io
-           docker build . --file Dockerfile --tag ghcr.io/oftharsh/docker-container-ghcr:latest 
-           docker push ghcr.io/oftharsh/docker-container-ghcr:latest
+
+    steps:
+    
+    - uses: actions/checkout@v3
+    
+    - name: Build the Docker image
+      working-directory: Dockerfile
+      run: docker build . --file Dockerfile --tag docker-container:$(date +%s)
