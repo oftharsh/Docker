@@ -1,15 +1,16 @@
 name: Docker Image CI for GHCR 
-
-on:
-  push 
-
-jobs:
-  build_and_publish: 
-   runs-on: ubuntu-latest 
-   steps:
-     - uses: actions/checkout@v3
-     - name: Build and push the image 
-       run:
-         docker login --username oftharsh --password ${{ secrets.GH_PAT }} ghcr.io
-         docker image build -t ghcr.io/oftharsh/docker-container-ghcr:latest
-         docker pull ghcr.io/oftharsh/docker-container-ghcr:latest
+on: 
+push: 
+branches: [ main ] 
+pull_request: 
+branches: [ main ]
+jobs: 
+build: 
+runs-on: ubuntu-latest
+steps: 
+- uses: actions/checkout@v3
+- name: Build & Push the Image
+run: 
+echo "${{ secrets.GH_PAT}}" |  docker login --username oftharsh --password-stdin
+docker image build -t ghcr.io/oftharsh/docker-container-ghcr:latest 
+ docker pull ghcr.io/oftharsh/docker-container-ghcr:latest
