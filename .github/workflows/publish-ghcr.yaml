@@ -21,4 +21,5 @@ jobs:
     
     - name: Build the Docker image
       working-directory: Dockerfile
-      run: docker build . --file Dockerfile --tag docker-container:$(date +%s)
+      run: docker build . --tag ghcr.io/oftharsh/docker-container-ghcr:latest
+           
