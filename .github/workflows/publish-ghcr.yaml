@@ -9,6 +9,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build and push the image
         run: 
-docker login --username oftharsh --password ${{ secrets.GH_PAT }} ghcr.io
-docker build . --tag ghcr.io/oftharsh/docker-container-ghcr:latest 
-docker push ghcr.io/oftharsh/docker-container-ghcr:latest
+           docker login --username oftharsh --password ${{ secrets.GH_PAT }} ghcr.io
+           docker build . --tag ghcr.io/oftharsh/docker-container-ghcr:latest 
+           docker push ghcr.io/oftharsh/docker-container-ghcr:latest
