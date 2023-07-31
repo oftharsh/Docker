@@ -4,7 +4,7 @@ on:
   push 
 
 jobs:
-  build_and _publish: 
+  build_and_publish: 
    runs-on: ubuntu-latest 
    steps:
      - uses: actions/checkpout@v3
