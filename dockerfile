@@ -12,7 +12,7 @@ RUN mkdir -p $TARGET_DIR
 WORKDIR $TARGET_DIR
 
 COPY composer-installer.sh $TARGET_DIR/
-COPY composer-wrapper.sh /usr/local/bin/composer
+COPY composer-wrapper.sh /H/Docker/composer
 
 RUN apt-get update && \
     apt-get install -y wget && \
@@ -22,11 +22,16 @@ RUN apt-get update && \
     docker-php-ext-install xml
 
 RUN chmod 744 $TARGET_DIR/composer-installer.sh
-RUN chmod 744 /usr/local/bin/composer
+RUN chmod 744 /H/Docker/composer
+
+# Install Composer
+RUN $TARGET_DIR/composer-installer.sh
+
+# Add Composer to PATH
+ENV PATH="${PATH}:${TARGET_DIR}"
 
 # Run composer installation of needed tools
-RUN $TARGET_DIR/composer-installer.sh && \
-   composer selfupdate && \
+RUN composer selfupdate && \
    composer require --prefer-stable --prefer-dist \
         "squizlabs/php_codesniffer:^3.6" \
         "phpunit/phpunit:^9.5" \
