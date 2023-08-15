@@ -1,5 +1,5 @@
 #!/bin/sh
 
-php /usr/local/lib/Docker/composer.phar $@
+php /H/Docker/composer.phar $@
 STATUS=$?
 return $STATUS

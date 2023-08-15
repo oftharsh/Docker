@@ -2,7 +2,7 @@
 # Choices available at https://hub.docker.com/_/php/ stick to "-cli" versions recommended
 FROM php:8.1.8-cli
 
-ENV TARGET_DIR="/usr/local/lib/Docker" \
+ENV TARGET_DIR="/H/Docker" \
     COMPOSER_ALLOW_SUPERUSER=1 \
     TIMEZONE=America/New_York \
     PHP_MEMORY_LIMIT=512M
